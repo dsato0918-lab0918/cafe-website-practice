@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Café Soleil | 地元に愛されるアットホームなカフェ</title>
+  <style>
+    /* ===== リセット & ベース ===== */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --brown-dark:  #3b2314;
+      --brown-mid:   #7b4f2e;
+      --brown-light: #c8956c;
+      --cream:       #fdf6ee;
+      --beige:       #f0e0c8;
+      --white:       #ffffff;
+      --text:        #3a2a1a;
+      --text-light:  #7a6050;
+      --accent:      #e8a87c;
+      --shadow:      rgba(59, 35, 20, 0.12);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Hiragino Mincho ProN', 'Yu Mincho', 'Georgia', serif;
+      background-color: var(--cream);
+      color: var(--text);
+      line-height: 1.8;
+    }
+
+    /* ===== ナビゲーション ===== */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      background: rgba(253, 246, 238, 0.92);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--beige);
+      padding: 0 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 64px;
+    }
+
+    .nav-logo {
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: var(--brown-dark);
+      letter-spacing: 0.06em;
+      text-decoration: none;
+    }
+
+    .nav-logo span {
+      color: var(--brown-light);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2.2rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: var(--text-light);
+      font-size: 0.9rem;
+      letter-spacing: 0.08em;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--brown-mid); }
+
+    /* ===== ヒーロー ===== */
+    #hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 6rem 2rem 4rem;
+      background:
+        linear-gradient(rgba(59,35,20,0.38), rgba(59,35,20,0.38)),
+        url('https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=1600&q=80') center/cover no-repeat;
+      color: var(--white);
+    }
+
+    #hero .tagline {
+      font-size: 0.85rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      margin-bottom: 1.2rem;
+      opacity: 0.85;
+    }
+
+    #hero h1 {
+      font-size: clamp(2.8rem, 6vw, 5rem);
+      letter-spacing: 0.12em;
+      margin-bottom: 1.2rem;
+      line-height: 1.15;
+    }
+
+    #hero p {
+      font-size: 1.05rem;
+      max-width: 480px;
+      opacity: 0.9;
+      margin-bottom: 2.4rem;
+      line-height: 1.9;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 0.75rem 2.2rem;
+      border: 2px solid var(--white);
+      color: var(--white);
+      text-decoration: none;
+      letter-spacing: 0.12em;
+      font-size: 0.88rem;
+      transition: background 0.25s, color 0.25s;
+      border-radius: 2px;
+    }
+
+    .btn:hover {
+      background: var(--white);
+      color: var(--brown-dark);
+    }
+
+    /* ===== セクション共通 ===== */
+    section {
+      padding: 5rem 2rem;
+    }
+
+    .section-inner {
+      max-width: 860px;
+      margin: 0 auto;
+    }
+
+    .section-label {
+      font-size: 0.78rem;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--brown-light);
+      margin-bottom: 0.6rem;
+    }
+
+    .section-title {
+      font-size: clamp(1.6rem, 3.5vw, 2.4rem);
+      color: var(--brown-dark);
+      margin-bottom: 1rem;
+      letter-spacing: 0.06em;
+    }
+
+    .divider {
+      width: 48px;
+      height: 2px;
+      background: var(--brown-light);
+      margin: 1.4rem 0 2.4rem;
+    }
+
+    /* ===== コンセプト ===== */
+    #concept {
+      background: var(--white);
+    }
+
+    .concept-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2.4rem;
+      margin-top: 2.4rem;
+    }
+
+    @media (max-width: 640px) {
+      .concept-grid { grid-template-columns: 1fr; }
+    }
+
+    .concept-card {
+      background: var(--cream);
+      padding: 2rem;
+      border-radius: 4px;
+      border-left: 3px solid var(--brown-light);
+    }
+
+    .concept-card h3 {
+      font-size: 1.05rem;
+      color: var(--brown-mid);
+      margin-bottom: 0.8rem;
+      letter-spacing: 0.06em;
+    }
+
+    .concept-card p, .concept-card ul {
+      font-size: 0.95rem;
+      color: var(--text-light);
+      line-height: 1.85;
+    }
+
+    .concept-card ul { padding-left: 1.2rem; }
+    .concept-card li { margin-bottom: 0.3rem; }
+
+    /* ===== メニュー ===== */
+    #menu {
+      background: var(--cream);
+    }
+
+    .menu-category {
+      margin-bottom: 2.8rem;
+    }
+
+    .menu-category h3 {
+      font-size: 1.1rem;
+      color: var(--brown-mid);
+      letter-spacing: 0.1em;
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+
+    .menu-category h3::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--beige);
+    }
+
+    .menu-items {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .menu-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      padding: 1rem 1.4rem;
+      border-bottom: 1px solid var(--beige);
+      transition: background 0.15s;
+    }
+
+    .menu-item:hover { background: var(--white); }
+
+    .menu-item-name {
+      font-size: 1rem;
+      color: var(--text);
+    }
+
+    .menu-item-desc {
+      font-size: 0.8rem;
+      color: var(--text-light);
+      margin-top: 0.15rem;
+    }
+
+    .menu-item-price {
+      font-size: 0.95rem;
+      color: var(--brown-mid);
+      font-weight: 600;
+      white-space: nowrap;
+      margin-left: 1rem;
+    }
+
+    /* ===== アクセス ===== */
+    #access {
+      background: var(--white);
+    }
+
+    .access-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2.8rem;
+      margin-top: 1rem;
+    }
+
+    @media (max-width: 640px) {
+      .access-grid { grid-template-columns: 1fr; }
+    }
+
+    .access-block h3 {
+      font-size: 0.82rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--brown-light);
+      margin-bottom: 0.8rem;
+    }
+
+    .access-block p {
+      font-size: 0.95rem;
+      color: var(--text-light);
+      line-height: 1.9;
+    }
+
+    .access-block ul {
+      padding-left: 1.2rem;
+      font-size: 0.95rem;
+      color: var(--text-light);
+      line-height: 2;
+    }
+
+    .hours-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.93rem;
+    }
+
+    .hours-table td {
+      padding: 0.5rem 0.8rem;
+      border-bottom: 1px solid var(--beige);
+      color: var(--text-light);
+    }
+
+    .hours-table td:first-child {
+      color: var(--text);
+      font-weight: 500;
+      width: 50%;
+    }
+
+    /* ===== マップ風プレースホルダー ===== */
+    .map-placeholder {
+      grid-column: 1 / -1;
+      height: 200px;
+      background: var(--beige);
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text-light);
+      font-size: 0.9rem;
+      letter-spacing: 0.06em;
+      margin-top: 1rem;
+    }
+
+    /* ===== フッター ===== */
+    footer {
+      background: var(--brown-dark);
+      color: rgba(255,255,255,0.65);
+      text-align: center;
+      padding: 2.4rem 1rem;
+      font-size: 0.82rem;
+      letter-spacing: 0.1em;
+    }
+
+    footer .footer-logo {
+      font-size: 1.3rem;
+      color: var(--accent);
+      margin-bottom: 0.6rem;
+      letter-spacing: 0.12em;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ナビゲーション -->
+  <nav>
+    <a href="#hero" class="nav-logo">Café <span>Soleil</span></a>
+    <ul class="nav-links">
+      <li><a href="#concept">コンセプト</a></li>
+      <li><a href="#menu">メニュー</a></li>
+      <li><a href="#access">アクセス</a></li>
+    </ul>
+  </nav>
+
+  <!-- ヒーロー -->
+  <section id="hero">
+    <p class="tagline">Since 2020 &nbsp;|&nbsp; Shibuya, Tokyo</p>
+    <h1>Café Soleil</h1>
+    <p>日常の小さな幸せを大切に、<br>地元に愛されるアットホームなカフェ。</p>
+    <a href="#menu" class="btn">メニューを見る</a>
+  </section>
+
+  <!-- コンセプト -->
+  <section id="concept">
+    <div class="section-inner">
+      <p class="section-label">Our Concept</p>
+      <h2 class="section-title">カフェのコンセプト</h2>
+      <div class="divider"></div>
+      <p style="color: var(--text-light); max-width: 560px;">
+        このカフェは「日常のひとときをもっと豊かに」という想いから生まれました。
+        地元の素材にこだわり、ゆったりと流れる時間を大切にしています。
+      </p>
+      <div class="concept-grid">
+        <div class="concept-card">
+          <h3>ストーリー</h3>
+          <p>「近所にほっとできる場所をつくりたい」という想いから、2020年にオープン。毎日通いたくなる、あなたの"いつもの場所"を目指しています。</p>
+        </div>
+        <div class="concept-card">
+          <h3>こだわり</h3>
+          <ul>
+            <li>豆は地元産スペシャルティコーヒー豆を使用</li>
+            <li>ミルクは毎朝届く新鮮な地元のもの</li>
+            <li>家具はアンティークの小物で統一</li>
+          </ul>
+        </div>
+        <div class="concept-card" style="grid-column: 1 / -1;">
+          <h3>ターゲット</h3>
+          <p>近隣に勤めるビジネスパーソン、地域のファミリー、週末に訪れる観光客——どなたでもくつろいでいただける空間です。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- メニュー -->
+  <section id="menu">
+    <div class="section-inner">
+      <p class="section-label">Our Menu</p>
+      <h2 class="section-title">メニュー</h2>
+      <div class="divider"></div>
+
+      <div class="menu-category">
+        <h3>☕ ドリンク</h3>
+        <div class="menu-items">
+          <div class="menu-item">
+            <div>
+              <div class="menu-item-name">ブレンドコーヒー</div>
+              <div class="menu-item-desc">地元産スペシャルティ豆を使用したこだわりのブレンド</div>
+            </div>
+            <div class="menu-item-price">¥500</div>
+          </div>
+          <div class="menu-item">
+            <div>
+              <div class="menu-item-name">カフェラテ</div>
+              <div class="menu-item-desc">毎朝届く新鮮な地元ミルクで仕上げた一杯</div>
+            </div>
+            <div class="menu-item-price">¥600</div>
+          </div>
+          <div class="menu-item">
+            <div>
+              <div class="menu-item-name">アイスコーヒー</div>
+              <div class="menu-item-desc">水出しで12時間じっくり抽出</div>
+            </div>
+            <div class="menu-item-price">¥550</div>
+          </div>
+          <div class="menu-item">
+            <div>
+              <div class="menu-item-name">カモミールティー</div>
+              <div class="menu-item-desc">ハーブの優しい香り、ノンカフェイン</div>
+            </div>
+            <div class="menu-item-price">¥480</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="menu-category">
+        <h3>🍞 フード</h3>
+        <div class="menu-items">
+          <div class="menu-item">
+            <div>
+              <div class="menu-item-name">厚切りトースト</div>
+              <div class="menu-item-desc">バターとハニーで。モーニングにも人気</div>
+            </div>
+            <div class="menu-item-price">¥400</div>
+          </div>
+          <div class="menu-item">
+            <div>
+              <div class="menu-item-name">ケーキセット</div>
+              <div class="menu-item-desc">日替わりケーキ＋ドリンクのお得なセット</div>
+            </div>
+            <div class="menu-item-price">¥800</div>
+          </div>
+          <div class="menu-item">
+            <div>
+              <div class="menu-item-name">キッシュプレート</div>
+              <div class="menu-item-desc">旬の野菜を使ったキッシュとサラダのセット</div>
+            </div>
+            <div class="menu-item-price">¥950</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- アクセス -->
+  <section id="access">
+    <div class="section-inner">
+      <p class="section-label">Access &amp; Hours</p>
+      <h2 class="section-title">アクセス・営業時間</h2>
+      <div class="divider"></div>
+
+      <div class="access-grid">
+        <div class="access-block">
+          <h3>住所</h3>
+          <p>東京都渋谷区渋谷 1-1-1<br>〒150-0002</p>
+          <br>
+          <h3>アクセス方法</h3>
+          <ul>
+            <li>🚃 渋谷駅 北口より徒歩5分</li>
+            <li>🚌 〇〇バス停より徒歩3分</li>
+            <li>🚗 近隣に有料駐車場あり</li>
+          </ul>
+        </div>
+        <div class="access-block">
+          <h3>営業時間</h3>
+          <table class="hours-table">
+            <tr><td>月曜日・火曜日</td><td>10:00 〜 20:00</td></tr>
+            <tr><td>水曜日</td><td>定休日</td></tr>
+            <tr><td>木曜日・金曜日</td><td>10:00 〜 20:00</td></tr>
+            <tr><td>土曜日・日曜日</td><td>9:00 〜 21:00</td></tr>
+            <tr><td>祝日</td><td>9:00 〜 20:00</td></tr>
+          </table>
+        </div>
+        <div class="map-placeholder">
+          📍 地図を埋め込む予定のエリア（Google Maps など）
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- フッター -->
+  <footer>
+    <div class="footer-logo">Café Soleil</div>
+    <p>東京都渋谷区渋谷 1-1-1　|　TEL: 03-XXXX-XXXX</p>
+    <p style="margin-top: 0.8rem;">© 2026 Café Soleil. All rights reserved.</p>
+  </footer>
+
+</body>
+</html>
